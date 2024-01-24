@@ -99,11 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_records'])) {
           </form>
         </div>
       </div>
-      <?php if (isset($successMessage)): ?>
-        <div class="alert alert-success" role="alert">
-          <?php echo $successMessage; ?>
-        </div>
-      <?php endif; ?>
+      
       <div class="row">
         <div class="col-sm-12 table-container" >
           <table id="custTable">
@@ -165,6 +161,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_records'])) {
         // Reload the current page
         location.href = "index.php";
     }
+    //To restrict alphanumeric inputs from price filter field. Allow only floating or decimal values
+    $(document).ready(function() {
+      $('#priceFilter').on('input', function() {
+          // Get the entered value
+          var inputValue = $(this).val();
+          // Remove non-numeric characters except for dots
+          var cleanedValue = inputValue.replace(/[^0-9.]/g, '');
+          // Update the input field with the cleaned value
+          $(this).val(cleanedValue);
+      });
+  });
 </script>
 </body>
 </html>
