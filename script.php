@@ -17,10 +17,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES["bookFile"])) {
             // Display the content of the JSON file  
             $tableName = "customers";
             foreach ($jsonData as $data) {
+                //Validation if needed before insertion: Only if unique record to insert
                 // Insert data
                 if (insertData($tableName, $data, "sale_id")) {
                     header('Location: index.php');
-                    $successMessage = "File Uploaded Successfully";
                 } else {
                     echo "Error inserting record";
                 }
